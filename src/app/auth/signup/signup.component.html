@@ -1,12 +1,64 @@
 <section>
-    <form fxLayout='column' fxLayoutAlign='center center' #f="ngForm" ngSubmit="onSubmit(f)" >
-        <mat-form-field>
-            <input type="text" ngModel name="email" matInput placeholder="Email">
-        </mat-form-field>
-        <mat-form-field>
-            <input type="text" ngModel name="Password" matInput placeholder="Password" >
-        </mat-form-field>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <mat-form-field>
+      <input
+        type="email"
+        ngModel
+        name="email"
+        matInput
+        placeholder="Email"
+        email
+        required
+        #emailInput="ngModel"
+      />
+      <mat-error *ngIf="emailInput.hasError('required')">
+        Field must not be empty
+      </mat-error>
 
-        <button mat-raised-button color='primary' type="submit"> Submit </button>
-    </form>
+      <mat-error *ngIf="!emailInput.hasError('required')">
+        Email is invalid
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field hintLabel="Shoud have 6 characters">
+      <input
+        type="password"
+        ngModel
+        name="password"
+        matInput
+        placeholder="Password"
+        required
+        minlength="6"
+        #pwInput="ngModel"
+      />
+      <mat-hint align="end"> {{ pwInput.value?.length }} / 6</mat-hint>
+      <!-- <mat-error>Shoud have 6 characters</mat-error> -->
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Date of Birth</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        [max]="maxDate"
+        ngMode="dateOfBirth"
+        required
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-checkbox ngMode="agree" required color="warn" [disabled]="f.invalid">
+        Agree With Terms and Conditions
+    </mat-checkbox>
+
+    <button mat-raised-button color="primary" type="submit">
+      Submit
+    </button>
+  </form>
 </section>
