@@ -25,3 +25,27 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+![Node version](https://badgen.net/npm/node/next)
+
+[![AangularCLI](https://img.shields.io/badge/AangularCLI-9.0.7-success.svg)](https://shields.io/)
+
+
+[![Generic badge](https://img.shields.io/static/v1?label=<LABEL>&message=<MESSAGE>&color=<COLOR>.svg)](https://shields.io/)
+
+
+
+![Flat](https://img.shields.io/npm/v/flat?color=success&label=Flat)
+
+![msal](https://img.shields.io/npm/v/msal?color=success&label=msal)
+
+![msal-angular](https://img.shields.io/npm/v/msal-angular?color=success&label=msal-angular)
+
+
+example
+
+![Flat](https://img.shields.io/npm/v/flat?color=success)
+
+
