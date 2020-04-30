@@ -38,9 +38,14 @@ export class TrainingService {
       date: new Date(), 
       state: 'cancelled', 
       duration: this.runningExercises.duration * progess/100, 
-      calories: this.runningExercises.duration * progess/100,
+      calories: this.runningExercises.calories * progess/100,
     })
     this.runningExercises = null
     this.exerciseChanged.next(null)
+  }
+
+  getCompleatedCanceledExercises() {
+   
+   return this.exercises.slice()
   }
 }
