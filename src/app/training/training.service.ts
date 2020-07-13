@@ -3,6 +3,7 @@ import { Subject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { map } from "rxjs/operators";
+import { Subscription } from "rxjs";
 
 @Injectable()
 export class TrainingService {
@@ -11,12 +12,13 @@ export class TrainingService {
   finishedExercisesChanged = new Subject<Exercise[]>()
   private avalibleExercise: Exercise[] = [];
   private runningExercises: Exercise;
+  private fbSubs: Subscription[] = []
 
 
-  constructor(private db: AngularFirestore) {}
+  constructor(private db: AngularFirestore) { }
 
   fetchAvailableExercises() {
-    this.db
+    this.fbSubs.push(this.db
       .collection("availableExcercises")
       .snapshotChanges()
       .pipe(
@@ -34,7 +36,7 @@ export class TrainingService {
       .subscribe((exercises: Exercise[]) => {
         this.avalibleExercise = exercises;
         this.exercisesChanged.next([...this.avalibleExercise]);
-      });
+      }));
   }
 
   startExercise(selectedId: string) {
@@ -50,7 +52,7 @@ export class TrainingService {
   }
 
   compleateExercise() {
-   this.addDatatoDatabase({
+    this.addDatatoDatabase({
       ...this.runningExercises,
       date: new Date(),
       state: "completed",
@@ -60,7 +62,7 @@ export class TrainingService {
   }
 
   cancelExercise(progess: number) {
-   this.addDatatoDatabase({
+    this.addDatatoDatabase({
       ...this.runningExercises,
       date: new Date(),
       state: "cancelled",
@@ -72,9 +74,13 @@ export class TrainingService {
   }
 
   fetchCompleatedCanceledExercises() {
-    this.db.collection('finishedExercises').valueChanges().subscribe((exercises: Exercise[]) => {
+    this.fbSubs.push(this.db.collection('finishedExercises').valueChanges().subscribe((exercises: Exercise[]) => {
       this.finishedExercisesChanged.next(exercises)
-    })
+    }))
+  }
+
+  cancelSubscriptions() {
+    this.fbSubs.forEach(subs => subs.unsubscribe())
   }
 
   private addDatatoDatabase(exercise: Exercise) {
