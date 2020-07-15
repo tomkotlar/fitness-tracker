@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort'
 import { MatPaginatorModule } from '@angular/material/paginator'
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import { MatPaginatorModule } from '@angular/material/paginator'
         MatTableModule,
         MatSortModule,
         MatPaginatorModule,
+        MatSnackBarModule,
 
     ],
     exports: [
@@ -59,6 +61,7 @@ import { MatPaginatorModule } from '@angular/material/paginator'
         MatTableModule,
         MatSortModule,
         MatPaginatorModule,
+        MatSnackBarModule,
     ]
 })
 

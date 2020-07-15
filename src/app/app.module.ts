@@ -21,6 +21,7 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 // user auth service
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
+import { UIService } from './shared/ui.service';
 // angular/fire
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
@@ -56,7 +57,7 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 
 
   ],
-  providers: [AuthService, TrainingService],
+  providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
 })
