@@ -5,7 +5,6 @@ import { AuthData } from "./auth-data.model";
 import { Router } from "@angular/router";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { TrainingService } from "../training/training.service";
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { UIService } from '../shared/ui.service';
 
 @Injectable()
@@ -17,7 +16,6 @@ export class AuthService {
     private router: Router,
     private auth: AngularFireAuth,
     private trainingSerive: TrainingService,
-    private snackBar: MatSnackBar,
     private uiService: UIService,
   ) {}
 
@@ -45,7 +43,7 @@ export class AuthService {
       })
       .catch((error) => {
         this.uiService.loadingStateChanged.next(false)
-        this.snackBar.open(error.message, null, {duration: 3000})
+        this.uiService.showSnackbar(error.message, null, 3000)
       });
   }
 
@@ -58,7 +56,7 @@ export class AuthService {
       })
       .catch((error) => {
         this.uiService.loadingStateChanged.next(false)
-        this.snackBar.open(error.message, null, {duration: 3000})
+        this.uiService.showSnackbar(error.message, null, 3000)
       });
   }
 
