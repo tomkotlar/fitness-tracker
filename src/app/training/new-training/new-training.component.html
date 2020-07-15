@@ -3,7 +3,7 @@
     <mat-card fxFlex="100%" fxFlex="400px">
       <mat-card-title fxLayoutAlign="center"> New Training</mat-card-title>
       <mat-card-content fxLayoutAlign="center">
-        <mat-form-field *ngIf="!isLoading">
+        <mat-form-field *ngIf="!isLoading && exercises">
           <mat-label>Favorite Excersise</mat-label>
           <mat-select placeholder="favorite exc" ngModel name="exercise" required>
             <mat-option *ngFor="let exercise of exercises" [value]="exercise.id">
@@ -14,8 +14,11 @@
         <mat-spinner *ngIf="!isLoading"></mat-spinner>
       </mat-card-content>
       <mat-card-actions fxLayoutAlign="center">
-        <button mat-button type="submit" [disabled]="f.invalid">
+        <button  *ngIf="exercises" mat-button type="submit" [disabled]="f.invalid">
           Start
+        </button>
+        <button *ngIf="!exercises" mat-button type="button" (click)="fetchExercises()">
+          Fetch Again
         </button>
       </mat-card-actions>
     </mat-card>

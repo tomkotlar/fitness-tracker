@@ -28,11 +28,15 @@ private loadingSubscription: Subscription
     this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(
       (exercise) => (this.exercises = exercise)
     );
-    this.trainingService.fetchAvailableExercises();
+    this.fetchExercises()
   }
 
   onStartTraining(form: NgForm) {
     this.trainingService.startExercise(form.value.exercise);
+  }
+  
+  fetchExercises() {
+    this.trainingService.fetchAvailableExercises()
   }
 
   ngOnDestroy() {

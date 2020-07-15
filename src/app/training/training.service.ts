@@ -5,6 +5,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { map } from "rxjs/operators";
 import { Subscription } from "rxjs";
 import { UIService } from '../shared/ui.service';
+// import { error } from 'protractor';
 
 @Injectable()
 export class TrainingService {
@@ -39,6 +40,10 @@ export class TrainingService {
         this.uiService.loadingStateChanged.next(false)
         this.avalibleExercise = exercises;
         this.exercisesChanged.next([...this.avalibleExercise]);
+      }, error => {
+        this.uiService.loadingStateChanged.next(false)
+        this.uiService.showSnackbar("Fetching Exercises failed, Please try again later", null, 3000)
+        this.exercisesChanged.next(null);
       }));
   }
 
