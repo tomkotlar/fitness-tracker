@@ -12,6 +12,6 @@ export class AppComponent implements OnInit{
   constructor(private authServive: AuthService) {}
 
   ngOnInit() {
-
+    this.authServive.initAuthListener()
   }
 }
