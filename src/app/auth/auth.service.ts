@@ -22,6 +22,7 @@ export class AuthService {
   initAuthListener() {
     this.auth.authState.subscribe(user => {
       if (user) {
+        console.log(user)
         this.isAuthenticated = true;
         this.authChange.next(true);
         this.router.navigate(["/training"]);
@@ -52,6 +53,7 @@ export class AuthService {
     this.auth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
+        console.log(result)
         this.uiService.loadingStateChanged.next(false)
       })
       .catch((error) => {
