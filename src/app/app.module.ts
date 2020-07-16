@@ -24,7 +24,6 @@ import { UIService } from './shared/ui.service';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from "@angular/fire/firestore";
-import { AngularFireAuthModule } from "@angular/fire/auth";
 //modules
 import { AuthModule } from './auth/auth.module';
 
@@ -51,7 +50,6 @@ import { AuthModule } from './auth/auth.module';
      ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule,
     AuthModule,
 
 

@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SignupComponent } from './signup/signup.component';
 import { LoginComponent } from './login/login.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { LoginComponent } from './login/login.component';
         ReactiveFormsModule,
         MaterialModule,
         FlexLayoutModule,
+        AngularFireAuthModule,
     ],
     exports: []
 
